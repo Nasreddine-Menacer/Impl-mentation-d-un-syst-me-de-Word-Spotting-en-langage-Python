@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://127.0.0.1/projects/tapmodo-Jcrop-1902fbc/index.php -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>word Spotting</title>
+  
+
+<script src="./word Spotting_files/jquery.min.js.téléchargement"></script>
+<script src="./word Spotting_files/jquery.Jcrop.js.téléchargement"></script>
+<script type="text/javascript">
+  jQuery(function($){
+
+    // Create variables (in this scope) to hold the API and image size
+    var jcrop_api,
+        boundx,
+        boundy,
+
+        // Grab some information about the preview pane
+        $preview = $('#preview-pane'),
+        $pcnt = $('#preview-pane .preview-container'),
+        $pimg = $('#preview-pane .preview-container img'),
+
+        xsize = $pcnt.width(),
+        ysize = $pcnt.height();
+    
+    console.log('init',[xsize,ysize]);
+    $('#target').Jcrop({
+      onChange: updatePreview,
+      onSelect: updatePreview,
+      aspectRatio: xsize / ysize
+    },function(){
+      // Use the API to get the real image size
+      var bounds = this.getBounds();
+      boundx = bounds[0];
+      boundy = bounds[1];
+      // Store the API in the jcrop_api variable
+      jcrop_api = this;
+
+      // Move the preview into the jcrop container for css positioning
+      $preview.appendTo(jcrop_api.ui.holder);
+    });
+
+    function updatePreview(c)
+    {
+      if (parseInt(c.w) > 0)
+      {
+        var rx = xsize / c.w;
+        var ry = ysize / c.h;
+
+        $pimg.css({
+          width: Math.round(rx * boundx) + 'px',
+          height: Math.round(ry * boundy) + 'px',
+          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+          marginTop: '-' + Math.round(ry * c.y) + 'px'
+        });
+      }
+    };
+
+  });
+
+
+</script>
+<link rel="stylesheet" href="./word Spotting_files/main.css" type="text/css">
+<link rel="stylesheet" href="./word Spotting_files/demos.css" type="text/css">
+<link rel="stylesheet" href="./word Spotting_files/jquery.Jcrop.css" type="text/css">
+<style type="text/css">
+
+/* Apply these styles only when #preview-pane has
+   been placed within the Jcrop widget */
+.jcrop-holder #preview-pane {
+  display: block;
+  position: absolute;
+  z-index: 2000;
+  top: 10px;
+  right: -280px;
+  padding: 6px;
+  border: 1px rgba(0,0,0,.4) solid;
+  background-color: white;
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* The Javascript code will set the aspect ratio of the crop
+   area based on the size of the thumbnail preview,
+   specified here */
+#preview-pane .preview-container {
+  width: 250px;
+  height: 170px;
+  overflow: hidden;
+}
+
+.style1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 60px;
+}
+.style2 {font-size: 50px}
+.style3 {font-size: 34px}
+.style4 {font-size: 40px}
+</style>
+
+</head>
+<body style="zoom: 1;">
+
+<div class="container">
+<div class="row">
+<div class="span12">
+<div class="jc-demo-box">
+
+<div class="page-header">
+<ul class="breadcrumb first">
+  <li></li>
+  </ul>
+<h1 align="center" class="style1">Word Spotting </h1>
+<div align="center"><br> <br>
+</div>
+<p align="center">Le repérage de mots-clés (ou plus simplement, le repérage de mots ) est un problème historiquement défini pour la première fois dans le contexte du traitement de la parole . Dans le traitement de la parole, le repérage des mots-clés concerne l'identification des mots - clés dans les énoncés.
+
+Le repérage de mots-clés est également défini comme un problème distinct, mais apparenté, dans le contexte du traitement d'images de documents  . Dans le traitement d'image de document, le repérage de mots-clés est le problème de trouver toutes les instances d'un mot de requête existant dans une image de document numérisée, sans le reconnaître complètement.</p>
+</div>
+
+
+<img src="./word Spotting_files/Capture.PNG" id="target" alt="[Jcrop Example]" style="display: none; visibility: hidden; width: 616px; height: 205px;"><div class="jcrop-holder" style="width: 616px; height: 205px; position: relative; background-color: black;"><div style="position: absolute; z-index: 600; width: 43px; height: 29px; top: 120px; left: 558px; display: block;"><div style="width: 100%; height: 100%; z-index: 310; position: absolute; overflow: hidden;"><img src="./word Spotting_files/Capture.PNG" style="border: none; visibility: visible; margin: 0px; padding: 0px; position: absolute; top: -120px; left: -558px; width: 616px; height: 205px;"><div class="jcrop-hline" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-hline bottom" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-vline right" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-vline" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-tracker" style="cursor: move; position: absolute; z-index: 360;"></div></div><div style="width: 100%; height: 100%; z-index: 320; display: block;"><div class="ord-n jcrop-dragbar" style="cursor: n-resize; position: absolute; z-index: 370;"></div><div class="ord-s jcrop-dragbar" style="cursor: s-resize; position: absolute; z-index: 371;"></div><div class="ord-e jcrop-dragbar" style="cursor: e-resize; position: absolute; z-index: 372;"></div><div class="ord-w jcrop-dragbar" style="cursor: w-resize; position: absolute; z-index: 373;"></div><div class="ord-n jcrop-handle" style="cursor: n-resize; position: absolute; z-index: 374; opacity: 0.5;"></div><div class="ord-s jcrop-handle" style="cursor: s-resize; position: absolute; z-index: 375; opacity: 0.5;"></div><div class="ord-e jcrop-handle" style="cursor: e-resize; position: absolute; z-index: 376; opacity: 0.5;"></div><div class="ord-w jcrop-handle" style="cursor: w-resize; position: absolute; z-index: 377; opacity: 0.5;"></div><div class="ord-nw jcrop-handle" style="cursor: nw-resize; position: absolute; z-index: 378; opacity: 0.5;"></div><div class="ord-ne jcrop-handle" style="cursor: ne-resize; position: absolute; z-index: 379; opacity: 0.5;"></div><div class="ord-se jcrop-handle" style="cursor: se-resize; position: absolute; z-index: 380; opacity: 0.5;"></div><div class="ord-sw jcrop-handle" style="cursor: sw-resize; position: absolute; z-index: 381; opacity: 0.5;"></div></div></div><div class="jcrop-tracker" style="width: 620px; height: 209px; position: absolute; top: -2px; left: -2px; z-index: 290; cursor: crosshair;"></div><input type="radio" class="jcrop-keymgr" style="position: fixed; left: -120px; width: 12px; display: none;"><img src="./word Spotting_files/Capture.PNG" alt="[Jcrop Example]" style="display: block; visibility: visible; width: 616px; height: 205px; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0.6;"><div id="preview-pane">
+    <div class="preview-container">
+								
+								
+								
+
+<img src="./word Spotting_files/Capture.PNG" class="jcrop-preview" alt="Preview" style="width: 3581px; height: 1192px; margin-left: -3244px; margin-top: -698px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+     
+
+
+
+    </div>
+	<br>
+	<button type="button" onclick="window.open(&#39;url d&#39;un script&#39;,&#39;Enregistrer Sous&#39;);">Trouver</button>
+  </div></div>								
+								
+								 
+
+  <div class="description">
+  <form name="form1" method="post" action="http://127.0.0.1/projects/tapmodo-Jcrop-1902fbc/mem1.php">
+                                      <div class="form-group">
+                                        <label for="exampleInputFile"> Veuillez choisir une image </label>
+                                        <input type="file" name="photo">
+                                        <input name="AJOUTER" type="submit" id="AJOUTER" value="Afficher">
+
+<button type="button" onclick="window.open(&#39;url d&#39;un script&#39;,&#39;Enregistrer Sous&#39;);">Capturer</button>
+
+                                        
+								
+									  
+									  </div>
+          </form>
+		  
+		  <br><br>
+		  <div class="page-header">
+<ul class="breadcrumb first">
+  <li></li>
+  </ul>
+<h1 align="left" class="style1 style2"><span class="style4">Résultat :</span><span class="style3">Il y'a 2 similitudes dans l'image
+  <p></p>
+</span></h1>
+<img src="./word Spotting_files/Capture.PNG" class="jcrop-preview" alt="Preview"><div align="center"><br> <br>
+</div>
+
+</div>
+  </div>
+
+<div class="tapmodo-footer">
+<img src="./word Spotting_files/sd.jpg">
+   <div class="segment">
+  <a href="http://www.univ-rouen.fr/" target="_blank"></a><div class="segment" style="font-size:14px"><a href="http://www.univ-rouen.fr/" target="_blank"><b>© 2017/2018 université de Rouen</b></a><br>
+   <a href="http://mastersid.univ-rouen.fr/" target="_blank" style="font-size:14px">Master SID</a>
+  </div>
+ </div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div></body></html>
